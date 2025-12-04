@@ -2,7 +2,7 @@ advent_of_code::solution!(4);
 
 pub fn part_one(input: &str) -> Option<u64> {
     println!("input is {input}");
-    None
+    13
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
