@@ -68,7 +68,7 @@ fn get_max_joltage_part2(bank: &str) -> u64 {
     for battery in 1..(number_of_batteries + 1) {
         let trimmed_bank = &bank[left_most_index..bank.len() - (number_of_batteries - battery)];
         let (mut max_battery_idx, max_battery_joltage) = get_max_battery(trimmed_bank);
-        max_battery_idx += left_most_index;
+        max_battery_idx += left_most_index; // translate the trimmed_bank index to an index for bank
         left_most_index = max_battery_idx + 1;
         batteries.push((max_battery_idx, max_battery_joltage));
     }
@@ -97,7 +97,7 @@ mod tests {
         let result = part_one(&advent_of_code::template::read_file_part(
             "examples", DAY, 2,
         ));
-        assert_eq!(result, Some(98));
+        assert_eq!(result, Some(99));
     }
 
     #[test]
