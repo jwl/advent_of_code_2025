@@ -66,8 +66,8 @@ impl Grid {
         Self::print_grid(&self.data)
     }
 
+    // returns number of rolls removed
     pub fn remove_accessible_rolls(&mut self) -> usize {
-        // returns number of rolls removed
         let mut accessible_coordinates: Vec<(usize, usize)> = Vec::new();
 
         for y in 0..self.height() {
@@ -134,8 +134,6 @@ pub fn part_one(input: &str) -> Option<u64> {
     let grid = Grid {
         data: convert_to_2d_array(input),
     };
-    // println!("grid is");
-    // grid.print_self();
 
     let max_rows = grid.height();
     let max_columns = grid.width();
@@ -156,9 +154,6 @@ pub fn part_one(input: &str) -> Option<u64> {
         }
     }
 
-    // println!("Overlay grid is:");
-    // grid.print_overlay(accessible_coordinates);
-
     Some(accessible_rolls.try_into().unwrap())
 }
 
@@ -171,7 +166,6 @@ pub fn part_two(input: &str) -> Option<u64> {
     // As long as there is >0 accessible rolls,
     // check for accessible rolls
     // and remove them.
-
     let mut total_removed_rolls: usize = 0;
     loop {
         let removed_rolls = grid.remove_accessible_rolls();
@@ -181,14 +175,6 @@ pub fn part_two(input: &str) -> Option<u64> {
             total_removed_rolls += removed_rolls;
         }
     }
-
-    // println!("Before removing accessible rolls, grid was:");
-    // grid.print_self();
-    // let removed_rolls: usize = grid.remove_accessible_rolls();
-    // println!("After removing {removed_rolls} accessible rolls, grid is:");
-    // grid.print_self();
-
-    //
 
     Some(total_removed_rolls.try_into().unwrap())
 }
@@ -200,7 +186,7 @@ mod tests {
     #[test]
     fn test_part_one() {
         let result = part_one(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, Some(14));
+        assert_eq!(result, Some(13));
     }
 
     #[test]
